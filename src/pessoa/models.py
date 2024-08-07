@@ -9,3 +9,5 @@ class Pessoa(models.Model):
     date_born = models.DateField()
     salary = models.DecimalField(max_digits=10,decimal_places=2)
     cpf = models.CharField(max_length=14,unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)

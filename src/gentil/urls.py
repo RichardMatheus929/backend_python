@@ -17,9 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from pessoa.views import Pessoa
+from pessoa.views import Pessoas,PessoaDetail
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('pessoas/',Pessoa.as_view())
+    path('pessoas/',Pessoas.as_view()),
+    path('pessoa/<int:pessoa_id>',PessoaDetail.as_view())
 ]
