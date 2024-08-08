@@ -1,4 +1,4 @@
-from rest_framework.views import APIView, Response
+from rest_framework.views import APIView, Response, status
 from datetime import datetime
 
 from .utils import Procedures
@@ -27,7 +27,7 @@ class Pessoas(APIView):
                 'updated_at': people[8]
             })
 
-        return Response(response_peoples, status=200)
+        return Response(response_peoples, status.HTTP_200_OK)
 
     def post(self, request):
 
@@ -59,7 +59,7 @@ class Pessoas(APIView):
             new_people['updated_at']
             ),
             
-        return Response({'people_created':new_people_id}, status=200)
+        return Response({'people_created':new_people_id}, status=status.HTTP_201_CREATED)
     
 class PessoaDetail(APIView):
 
@@ -84,7 +84,7 @@ class PessoaDetail(APIView):
             'updated_at': pessoa[8]
         }
 
-        return Response(response_pessoa,status=200)
+        return Response(response_pessoa,status=status.HTTP_200_OK)
 
     def put(self, request, pessoa_id):
 
@@ -105,7 +105,7 @@ class PessoaDetail(APIView):
             datetime.now()
         )
 
-        return Response({'sucess': update}, status=200)  # Alterar o status
+        return Response({'sucess': update}, status=status.HTTP_200_OK)
 
     def delete(self, request, pessoa_id):
 
@@ -116,4 +116,4 @@ class PessoaDetail(APIView):
 
         delete = Procedures.delete_people(pessoa_id)
 
-        return Response({'sucess': delete}, status=200)  # alterar o status
+        return Response({'sucess': delete}, status=status.HTTP_204_NO_CONTENT)

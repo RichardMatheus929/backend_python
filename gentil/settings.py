@@ -81,7 +81,7 @@ DATABASES = {
         'NAME': 'gentildb',
         'USER': 'pgroot',
         'PASSWORD': 'pg@root',
-        'HOST': 'localhost',
+        'HOST': 'db',
         'PORT': 5432
     }
 }

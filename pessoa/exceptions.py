@@ -6,6 +6,6 @@ class NullData(APIException):
     default_code = 'data not could be null'
 
 class PessoaNotExist(APIException):
-    status_code = 400
+    status_code = 404
     default_detail = 'A pessoa não pode ser editada porque não existe'
     default_code = 'people not exists'
