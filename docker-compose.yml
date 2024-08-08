@@ -1,0 +1,25 @@
+version: "3.9"
+
+# Determina os serviços necessários para o container
+services:
+# Seleciona o banco de dados Postgres
+# Também informa as variáveis de ambiente
+  db:
+    image: postgres
+    environment:
+        - POSTGRES_DB=gentildb
+        - POSTGRES_USER=pgroot
+        - POSTGRES_PASSWORD=pg@root
+# Cria o ambiente web utilizando o localhost na porta 8000
+# Também informa a pasta onde está o código do app
+# E adiciona a dependência do serviço db
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+  

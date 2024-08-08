@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'gentil.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'gentilnegocios',
+        'NAME': 'gentildb',
         'USER': 'pgroot',
         'PASSWORD': 'pg@root',
         'HOST': 'localhost',
