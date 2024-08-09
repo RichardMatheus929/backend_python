@@ -15,7 +15,7 @@
 
 Primeiro você precisa está com o docker e o docker-compose instalado no seu linux, ou wsl.
 
-Na raiz do projeto, com o dockerfile e o docker-compose.yml, rode os seguintes comandos.
+Na raiz do projeto, com o dockerfile e o docker-compose.yml, rode os seguintes comandos. (Perceba que o container do django leva cerca de 10 segundos para ficar pronto)
 
 ```docker
 docker-compose up -d
