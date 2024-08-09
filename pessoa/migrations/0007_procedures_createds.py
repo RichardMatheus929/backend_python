@@ -64,8 +64,8 @@ END;
 $function$
 ;
 """
-SQL_POST_PESSOA = """
-CREATE OR REPLACE FUNCTION public.update_pessoa(p_pessoa_id integer, p_name text, p_name_father text, p_name_mother text, p_date_born date, p_salary numeric, p_cpf character, p_created_at timestamp with time zone, p_updated_at timestamp with time zone)
+SQL_PUT_PESSOA = """
+CREATE OR REPLACE FUNCTION public.update_pessoa(p_pessoa_id integer, p_name text, p_name_father text, p_name_mother text, p_date_born timestamp, p_salary numeric, p_cpf character, p_created_at timestamp with time zone, p_updated_at timestamp with time zone)
  RETURNS boolean
  LANGUAGE plpgsql
 AS $function$
@@ -129,6 +129,6 @@ class Migration(migrations.Migration):
         migrations.RunSQL(SQL_GET_PESSOA),
         migrations.RunSQL(SQL_GET_PESSOAS),
         migrations.RunSQL(SQL_DELETE_PESSOA),
-        migrations.RunSQL(SQL_POST_PESSOA),
+        migrations.RunSQL(SQL_PUT_PESSOA),
         migrations.RunSQL(SQL_CREATE_PESSOA),
     ]

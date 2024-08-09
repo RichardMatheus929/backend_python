@@ -102,15 +102,23 @@ class PessoaDetail(APIView):
 
         pessoa = Pessoa.objects.filter(pessoa_id=pessoa_id).first()
 
+        # Validações
         if not pessoa:
             raise PessoaNotExist
+        
+        if request.data.get('date_born',pessoa.date_born):
+            try:
+                date_born = request.data.get('date_born',pessoa.date_born)
+                date_born = datetime.datetime.strptime(request.data.get('date_born',pessoa.date_born),"%d/%m/%Y")
+            except ValueError:
+                raise InvalidData
         
         update = Procedures.updated_people(
             pessoa_id,
             request.data.get('name',pessoa.name),
             request.data.get('name_father',pessoa.name_father),
             request.data.get('name_mother',pessoa.name_mother),
-            request.data.get('date_born',pessoa.date_born),
+            date_born,
             request.data.get('salary',pessoa.salary),
             request.data.get('cpf',pessoa.cpf),
             pessoa.created_at,
