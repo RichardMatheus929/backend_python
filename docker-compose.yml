@@ -15,11 +15,10 @@ services:
 # E adiciona a dependência do serviço db
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: ./wait-for-it.sh db -- python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
     ports:
       - "8000:8000"
     depends_on:
       - db
-  
