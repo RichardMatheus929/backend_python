@@ -15,13 +15,13 @@
 
 Primeiro você precisa está com o docker e o docker-compose instalado no seu linux, ou wsl.
 
-Na raiz do projeto, com o dockerfile e o docker-compose.yml, rode os seguintes comandos. (Perceba que o container do django leva cerca de 10 segundos para ficar pronto)
+Na raiz do projeto, com o dockerfile e o docker-compose.yml, rode os seguintes comandos.
 
 ```docker
 docker-compose up -d
 ```
 
-Esse comando irá inicializar o container, a flag -d é para iniciar desanexado, sem que o docker lhe prenda no terminal do container. Após os status de completed para os dois containeres serem exibidos no terminal rode o próximo comando. 
+Esse comando irá inicializar o container, a flag -d é para iniciar desanexado, sem que o docker lhe prenda no terminal do container. (O container do django pode demorar alguns segundos para ficar disponível)
 
 Agora todas as requisições já podem ser feitas na porta 8000 do localhost.
 
