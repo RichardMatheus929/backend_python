@@ -18,13 +18,13 @@ Primeiro você precisa está com o docker e o docker-compose instalado no seu li
 Na raiz do projeto, com o dockerfile e o docker-compose.yml, rode os seguintes comandos.
 
 ```docker
-**docker-compose up -d** 
+docker-compose up -d
 ```
 
 Esse comando irá inicializar o container, a flag -d é para iniciar desanexado, sem que o docker lhe prenda no terminal do container. Após os status de completed para os dois containeres serem exibidos no terminal rode o próximo comando.
 
 ```docker
-**docker-compose exec web python manage.py migrate**
+docker-compose exec web python manage.py migrate
 ```
 
 Esse comando é estremamente importante para que o sistema funcione. Como o projeto pede procedures no banco de dados, e elas são criadas a partir de scripts SQL, esses scripts precisam ser executados dentro do banco de dados após subir os container.
