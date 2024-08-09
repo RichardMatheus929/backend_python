@@ -93,9 +93,17 @@ $function$
 """
 
 SQL_CREATE_PESSOA = """
-CREATE OR REPLACE FUNCTION public.insert_pessoa(p_nome text, p_nomepai text, p_nomemae text, p_datanascimento date, p_salario numeric, p_cpf character, p_created_at timestamp without time zone DEFAULT now(), p_updated_at timestamp without time zone DEFAULT now())
- RETURNS integer
- LANGUAGE plpgsql
+CREATE OR REPLACE FUNCTION public.insert_pessoa(
+    p_nome TEXT,
+    p_nomepai TEXT,
+    p_nomemae TEXT,
+    p_datanascimento TIMESTAMP,
+    p_salario NUMERIC,
+    p_cpf CHAR(14),
+    p_created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT now(),
+    p_updated_at TIMESTAMP WITHOUT TIME ZONE DEFAULT now()
+) RETURNS INTEGER
+LANGUAGE plpgsql
 AS $function$
 DECLARE
     new_id INTEGER;
@@ -106,8 +114,7 @@ BEGIN
 
     RETURN new_id;
 END;
-$function$
-;
+$function$;
 
 """
 

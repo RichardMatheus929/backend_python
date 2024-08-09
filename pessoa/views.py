@@ -1,11 +1,11 @@
 from rest_framework.views import APIView, Response, status
-from datetime import datetime
+import datetime
 
-from .utils import Procedures
 from pessoa.models import Pessoa
-from .exceptions import NullData, PessoaNotExist
-# Create your views here.
 
+from .utils.procedures import Procedures
+from .utils.exceptions import NullData, PessoaNotExist, InvalidData
+from .utils.validation import Validation
 
 class Pessoas(APIView):
 
@@ -38,14 +38,26 @@ class Pessoas(APIView):
             'date_born': request.data.get('date_born'),
             'salary': request.data.get('salary'),
             'cpf': request.data.get('cpf'),
-            'created_at': datetime.now(),
-            'updated_at': datetime.now()
+            'created_at': datetime.datetime.now(),
+            'updated_at': datetime.datetime.now()
         }
+
+        # Validações
 
         if None in new_people.values():
             raise NullData
-        # Validar se a pessoa já não existe ou o cpf
-        # Validar cpf e data de nascimento
+        
+        if Pessoa.objects.filter(cpf=new_people['cpf']).exists():
+            raise InvalidData
+        
+        if new_people['date_born']:
+            try:
+                new_people['date_born'] = datetime.datetime.strptime(new_people['date_born'],"%d/%m/%Y")
+            except ValueError:
+                raise InvalidData
+            
+        if not Validation.validador_cpf(new_people['cpf']):
+            raise InvalidData
         
         new_people_id = Procedures.create_people(
 
@@ -102,7 +114,7 @@ class PessoaDetail(APIView):
             request.data.get('salary',pessoa.salary),
             request.data.get('cpf',pessoa.cpf),
             pessoa.created_at,
-            datetime.now()
+            datetime.datetime.now()
         )
 
         return Response({'sucess': update}, status=status.HTTP_200_OK)
