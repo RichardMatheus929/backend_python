@@ -21,15 +21,9 @@ Na raiz do projeto, com o dockerfile e o docker-compose.yml, rode os seguintes c
 docker-compose up -d
 ```
 
-Esse comando irá inicializar o container, a flag -d é para iniciar desanexado, sem que o docker lhe prenda no terminal do container. Após os status de completed para os dois containeres serem exibidos no terminal rode o próximo comando.
+Esse comando irá inicializar o container, a flag -d é para iniciar desanexado, sem que o docker lhe prenda no terminal do container. Após os status de completed para os dois containeres serem exibidos no terminal rode o próximo comando. 
 
-```docker
-docker-compose exec web python manage.py migrate
-```
-
-Esse comando é estremamente importante para que o sistema funcione. Como o projeto pede procedures no banco de dados, e elas são criadas a partir de scripts SQL, esses scripts precisam ser executados dentro do banco de dados após subir os container.
-
-As migrations poderiam ser executadas automaticamente dentro do container, mas é válida deixa-las aqui, visto que mostram como a integração do django com o postgres funciona bem, já que mesmo scripts SQL puros são executados sem muitas preocupações a partir do django.
+Agora todas as requisições já podem ser feitas na porta 8000 do localhost.
 
 ## Tecnologias
 
